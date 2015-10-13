@@ -2,34 +2,53 @@
 <html lang="en" ng-app="doughnutsApp">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ANGULAR DOUGHNUUUUUUUUUUTS</title>
   <script src="./js/angular.min.js"></script>
   <script src="./js/app.js"></script>
   <script src="./js/doughnutsController.js"></script>
   <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body ng-controller="DoughnutsController as nuts">
-  <h1>{{ nuts.title }}</h1>
-  <h2>LIST OF NUTS:</h2>
-  <ul>
-    <li ng-repeat="nut in nuts.all">
-      <button ng-click="nuts.remove($index)">X</button>
-      <strong>{{ nut.flavor }}</strong> {{ nut.style }}
-    </li>
-  </ul>
-  <form ng-submit="nuts.add()">
-    <div class="form-row"><input type="text"
-                                 placeholder="Flavor"
-                                 name="flavor"
-                                 id="flavor"
-                                 ng-model="nuts.newNut.flavor"
-                                 autofocus></div>
-    <div class="form-row"><input type="text"
-                                 placeholder="Style"
-                                 name="style"
-                                 id="style"
-                                 ng-model="nuts.newNut.style"></div>
-    <div class="form-row"><input type="submit" value="CREATE DOUGHNUT"></div>
-  </form>
+  <div class="container">
+    <div class="row">
+      <h1>{{ nuts.title }}</h1>
+      <h2>LIST OF NUTS:</h2>
+      <div class="col-sm-offset-2 col-sm-5">
+        <ul class="list-group">
+          <li ng-repeat="nut in nuts.all" class="list-group-item">
+            <strong>{{ nut.flavor }}</strong> {{ nut.style }} (<a ng-click="nuts.edit($index)">edit</a>)
+            <button type="button" class="close" aria-label="Close" ng-click="nuts.remove($index)"><span aria-hidden="true">&times;</span></button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <form ng-submit="nuts.add()" class="form-horizontal">
+        <div class="form-group">
+          <label for="flavor" class="control-label col-sm-2">Flavor: </label>
+          <div class="col-sm-5">
+            <input type="text" placeholder="Lemon" name="flavor" id="flavor"
+                   ng-model="nuts.newNut.flavor" autofocus class="form-control">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="style" class="control-label col-sm-2">Style: </label>
+          <div class="col-sm-5">
+            <input type="text" placeholder="Cronut" name="style" id="style"
+                   ng-model="nuts.newNut.style" class="form-control">
+          </div>
+        </div>
+        <div class="col-sm-offset-2 col-sm-10">
+          <input type="submit" value="CREATE DOUGHNUT" class="btn btn-primary">
+        </div>
+      </form>
+    </div>
+  </div>
 </body>
 </html>
