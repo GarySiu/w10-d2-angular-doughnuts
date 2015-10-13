@@ -6,6 +6,7 @@
   <script src="./js/angular.min.js"></script>
   <script src="./js/app.js"></script>
   <script src="./js/doughnutsController.js"></script>
+  <link rel="stylesheet" href="./css/style.css">
 </head>
 <body ng-controller="DoughnutsController as nuts">
   <h1>{{ nuts.title }}</h1>
@@ -15,9 +16,18 @@
     <button>X</button>
     <strong>{{ nut.flavor }}</strong> {{ nut.style }}</li>
   </ul>
-  <form>
-    <div class="form-row"><input type="text" placeholder="Flavor"></div>
-    <div class="form-row"><input type="text" placeholder="Style"></div>
+  <form ng-submit="nuts.add()">
+    <div class="form-row"><input type="text"
+                                 placeholder="Flavor"
+                                 name="flavor"
+                                 id="flavor"
+                                 ng-model="nuts.newNut.flavor"
+                                 autofocus></div>
+    <div class="form-row"><input type="text"
+                                 placeholder="Style"
+                                 name="style"
+                                 id="style"
+                                 ng-model="nuts.newNut.style"></div>
     <div class="form-row"><input type="submit" value="CREATE DOUGHNUT"></div>
   </form>
 </body>

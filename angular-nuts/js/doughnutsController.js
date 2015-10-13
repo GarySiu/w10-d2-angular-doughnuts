@@ -7,6 +7,9 @@ function DoughnutsController($http){
   vm = this
   vm.title = "Angular Doughnuts?!"
   vm.all = []
+  vm.newNut = {}
+
+  getNuts()
 
   function getNuts(){
     $http.get('http://api.doughnuts.ga/doughnuts')
@@ -14,5 +17,14 @@ function DoughnutsController($http){
       vm.all = response.data
     })
   }
-  getNuts()
+
+  vm.add = addNuts
+
+  function addNuts(){
+    $http.post('http://api.doughnuts.ga/doughnuts', vm.newNut)
+    .then(function(response){
+      vm.all.push(response.data)
+      vm.newNut = {}
+    })
+  }
 }
