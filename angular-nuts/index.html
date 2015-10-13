@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="doughnutsApp">
+<head>
+  <meta charset="UTF-8">
+  <title>ANGULAR DOUGHNUUUUUUUUUUTS</title>
+  <script src="./js/angular.min.js"></script>
+  <script src="./js/app.js"></script>
+  <script src="./js/doughnutsController.js"></script>
+</head>
+<body ng-controller="DoughnutsController as nuts">
+  <h1>{{ nuts.title }}</h1>
+  <h2>LIST OF NUTS:</h2>
+  <ul>
+    <li ng-repeat="nut in nuts.all">
+    <button>X</button>
+    <strong>{{ nut.flavor }}</strong> {{ nut.style }}</li>
+  </ul>
+  <form>
+    <div class="form-row"><input type="text" placeholder="Flavor"></div>
+    <div class="form-row"><input type="text" placeholder="Style"></div>
+    <div class="form-row"><input type="submit" value="CREATE DOUGHNUT"></div>
+  </form>
+</body>
+</html>
