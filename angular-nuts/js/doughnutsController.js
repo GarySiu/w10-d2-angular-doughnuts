@@ -27,4 +27,17 @@ function DoughnutsController($http){
       vm.newNut = {}
     })
   }
+
+  vm.remove = removeNuts
+
+  var deleteId
+
+  function removeNuts(id){
+    deleteId = id
+    $http.delete('http://api.doughnuts.ga/doughnuts/' + id)
+    .then(function(){
+      vm.all.splice(deleteId, 1)
+    })
+  }
+
 }

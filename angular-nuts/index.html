@@ -13,8 +13,9 @@
   <h2>LIST OF NUTS:</h2>
   <ul>
     <li ng-repeat="nut in nuts.all">
-    <button>X</button>
-    <strong>{{ nut.flavor }}</strong> {{ nut.style }}</li>
+      <button ng-click="nuts.remove($index)">X</button>
+      <strong>{{ nut.flavor }}</strong> {{ nut.style }}
+    </li>
   </ul>
   <form ng-submit="nuts.add()">
     <div class="form-row"><input type="text"
