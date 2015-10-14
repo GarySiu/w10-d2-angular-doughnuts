@@ -29,13 +29,11 @@
               <span aria-hidden="true">&times;</span>
             </button>
             </span>
-            <span ng-if="nuts.editNut.id === nut.id">
-              <form>
-                <input type="text" ng-model="nuts.editNut.flavor" ng-attr-size="{{ nuts.editNut.flavor.length }}">
-                <input type="text" ng-model="nuts.editNut.style" ng-attr-size="{{ nuts.editNut.style.length }}">
-                <button type="button" class="btn btn-default btn-xs" ng-click="nuts.update($index)">UPDATE DONUT</button>
-              </form>
-            </span>
+            <form ng-if="nuts.editNut.id === nut.id">
+              <input type="text" ng-model="nuts.editNut.flavor" ng-attr-size="{{ nuts.editNut.flavor.length }}">
+              <input type="text" ng-model="nuts.editNut.style" ng-attr-size="{{ nuts.editNut.style.length }}">
+              <button type="button" class="btn btn-default btn-xs" ng-click="nuts.update($index)">UPDATE DONUT</button>
+            </form>
           </li>
         </ul>
       </div>
