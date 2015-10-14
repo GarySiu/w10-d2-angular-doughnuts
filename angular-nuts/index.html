@@ -19,11 +19,23 @@
     <div class="row">
       <h1>{{ nuts.title }}</h1>
       <h2>LIST OF NUTS:</h2>
-      <div class="col-sm-offset-2 col-sm-5">
+      <div class="col-sm-offset-2 col-sm-6">
         <ul class="list-group">
           <li ng-repeat="nut in nuts.all" class="list-group-item">
-            <strong>{{ nut.flavor }}</strong> {{ nut.style }} (<a ng-click="nuts.edit($index)">edit</a>)
-            <button type="button" class="close" aria-label="Close" ng-click="nuts.remove($index)"><span aria-hidden="true">&times;</span></button>
+            <span ng-if="nuts.editNut.id !== nut.id">
+              <strong>{{ nut.flavor }}</strong> {{ nut.style }}
+              (<a ng-click="nuts.edit($index)">edit</a>)
+              <button type="button" class="close" aria-label="Close" ng-click="nuts.remove($index)">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            </span>
+            <span ng-if="nuts.editNut.id === nut.id">
+              <form>
+                <input type="text" ng-model="nuts.editNut.flavor" ng-attr-size="{{ nuts.editNut.flavor.length }}">
+                <input type="text" ng-model="nuts.editNut.style" ng-attr-size="{{ nuts.editNut.style.length }}">
+                <button type="button" class="btn btn-default btn-xs" ng-click="nuts.update($index)">UPDATE DONUT</button>
+              </form>
+            </span>
           </li>
         </ul>
       </div>
@@ -32,19 +44,19 @@
       <form ng-submit="nuts.add()" class="form-horizontal">
         <div class="form-group">
           <label for="flavor" class="control-label col-sm-2">Flavor: </label>
-          <div class="col-sm-5">
+          <div class="col-sm-6">
             <input type="text" placeholder="Lemon" name="flavor" id="flavor"
                    ng-model="nuts.newNut.flavor" autofocus class="form-control">
           </div>
         </div>
         <div class="form-group">
           <label for="style" class="control-label col-sm-2">Style: </label>
-          <div class="col-sm-5">
+          <div class="col-sm-6">
             <input type="text" placeholder="Cronut" name="style" id="style"
                    ng-model="nuts.newNut.style" class="form-control">
           </div>
         </div>
-        <div class="col-sm-offset-2 col-sm-10">
+        <div class="col-sm-offset-2 col-sm-6">
           <input type="submit" value="CREATE DOUGHNUT" class="btn btn-primary">
         </div>
       </form>

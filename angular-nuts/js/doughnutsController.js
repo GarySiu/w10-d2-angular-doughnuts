@@ -8,6 +8,7 @@ function DoughnutsController($http){
   vm.title = "Angular Doughnuts?!"
   vm.all = []
   vm.newNut = {}
+  vm.editNut = {}
 
   getNuts()
 
@@ -38,6 +39,23 @@ function DoughnutsController($http){
     .then(function(){
       vm.all.splice(deleteId, 1)
     })
+  }
+
+  vm.edit = editNuts
+
+  function editNuts(id){
+    vm.editNut = vm.all[id]
+    console.log(vm.editNut.id)
+  }
+
+  vm.update = updateNuts
+
+  function updateNuts(id){
+    $http.put('http://api.doughnuts.ga/doughnuts/' + id, vm.editNut)
+    .then(function(response){
+      console.log(response)
+    })
+    vm.editNut = {}
   }
 
 }
